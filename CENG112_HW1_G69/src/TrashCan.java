@@ -12,33 +12,47 @@ public class TrashCan<T> implements IBag<T> {
         this.capacity = DEFAULT_CAPACITY;
         this.items = (T[]) new Object[capacity];
         this.itemCount = 0;
+
     }
 
 //full olmadikca separete
-    public boolean separate(T item) {
+    public boolean separate(T item,IBag<T> targetBag) {
+
         if (item instanceof Garbage) {
             Garbage garbage = (Garbage) item;
             String garbageType = garbage.getGarbageType();
-
             // Separate the garbage based on its type
             switch (garbageType) {
-                case "glass":
-                    // Handle glass garbage
-                    break;
                 case "metal":
-                    // Handle metal garbage
+                    if (!targetBag.isFull()){
+                        transferTo(targetBag,item);
+
+                        break;}
                     break;
+                case "glass":
+                    if (!targetBag.isFull()){
+                        transferTo(targetBag,item);
+                        break;}
+                    break;
+
                 case "organic":
-                    // Handle organic garbage
+                    if (!targetBag.isFull()){
+                        transferTo(targetBag,item);
+                        break;}
                     break;
                 case "paper":
-                    // Handle paper garbage
+                    if (!targetBag.isFull()){
+                        transferTo(targetBag,item);
+                        break;
+                    }
                     break;
                 case "plastic":
-                    // Handle plastic garbage
+                    if (!targetBag.isFull()){
+                        transferTo(targetBag,item);
+                        break;
+                    }
                     break;
                 default:
-                    // Garbage type not recognized
                     return false;
             }
 
