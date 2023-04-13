@@ -1,13 +1,13 @@
 import java.util.Arrays;
 import java.util.Random;
 
-public class PlasticRecycleBin<T> implements IBag<T> {
+public class PaperRecycleBin<T> implements IBag<T> {
 
     private T[] items;
     private int itemCount;
     private int capacity;
 
-    public PlasticRecycleBin() {
+    public PaperRecycleBin() {
         int[] values = {5, 10, 15};
         Random rand = new Random();
         int randomIndex = rand.nextInt(values.length);
@@ -15,7 +15,6 @@ public class PlasticRecycleBin<T> implements IBag<T> {
         this.items = (T[]) new Object[capacity];
         this.itemCount = 0;
     }
-
 
     public boolean add(T newItem) {
         if (isFull()) {
