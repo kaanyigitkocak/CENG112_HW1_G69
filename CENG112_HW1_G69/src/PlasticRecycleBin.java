@@ -24,6 +24,11 @@ public class PlasticRecycleBin<T> implements IBag<T> {
         items[itemCount] = newItem;
         itemCount++;
         return true;
+
+    }
+    public T getByIndex(int index){
+
+        return items[index];
     }
 
     public boolean isEmpty() {

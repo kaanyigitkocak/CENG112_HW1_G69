@@ -12,4 +12,5 @@ public interface IBag<T> {
 	public void displayItems();
 	public void dump(); 
 	public boolean transferTo(IBag<T> targetBag, T item);
+	public T getByIndex(int index);
 }

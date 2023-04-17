@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class TrashCan<T> implements IBag<T> {
 
-    private T[] items;
+    public T[] items;
     private int itemCount;
     private int capacity;
 
@@ -15,8 +15,7 @@ public class TrashCan<T> implements IBag<T> {
 
     }
 
-//full olmadikca separete
-    public boolean separate(T item,IBag<T> targetBag) {
+    public boolean separate(T item,IBag<T> targetBag1,IBag<T> targetBag2,IBag<T> targetBag3,IBag<T> targetBag4,IBag<T> targetBag5,IBag<T> targetBag6) {
 
         if (item instanceof Garbage) {
             Garbage garbage = (Garbage) item;
@@ -24,33 +23,45 @@ public class TrashCan<T> implements IBag<T> {
             // Separate the garbage based on its type
             switch (garbageType) {
                 case "metal":
-                    if (!targetBag.isFull()){
-                        transferTo(targetBag,item);
+                    if (!targetBag1.isFull()) {
+                        transferTo(targetBag1,item);
+                    }
 
-                        break;}
                     break;
                 case "glass":
-                    if (!targetBag.isFull()){
-                        transferTo(targetBag,item);
-                        break;}
+                    if (!targetBag2.isFull()) {
+                        transferTo(targetBag2,item);
+                    }
+
                     break;
 
                 case "organic":
-                    if (!targetBag.isFull()){
-                        transferTo(targetBag,item);
-                        break;}
+                    if (!targetBag3.isFull()) {
+                        transferTo(targetBag3,item);
+                    }
+
+
                     break;
                 case "paper":
-                    if (!targetBag.isFull()){
-                        transferTo(targetBag,item);
-                        break;
+                    if (!(targetBag4.isFull())) {
+                        transferTo(targetBag4,item);
                     }
+
+
                     break;
                 case "plastic":
-                    if (!targetBag.isFull()){
-                        transferTo(targetBag,item);
-                        break;
+                    if (!(targetBag5.isFull())) {
+                        transferTo(targetBag5,item);
                     }
+
+
+                    break;
+                case "fabric":
+                    if (!(targetBag6.isFull())) {
+                        transferTo(targetBag6,item);
+                    }
+
+
                     break;
                 default:
                     return false;
@@ -80,6 +91,10 @@ public class TrashCan<T> implements IBag<T> {
         return itemCount == capacity;
     }
 
+    public T getByIndex(int index){
+
+        return items[index];
+    }
     public T removeByIndex(int index) {
         if (index < 0 || index >= itemCount) {
             return null;
@@ -139,9 +154,6 @@ public class TrashCan<T> implements IBag<T> {
 
     public boolean transferTo(IBag<T> targetBag, T item) {
         if (!contains(item)) {
-            return false;
-        }
-        if (targetBag.isFull()) {
             return false;
         }
         targetBag.add(remove(item));

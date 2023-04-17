@@ -15,13 +15,23 @@ public class GlassRecycleBin<T> implements IBag<T> {
         this.items = (T[]) new Object[capacity];
         this.itemCount = 0;
     }
+    public T getByIndex(int index){
+
+        return items[index];
+    }
 
     public boolean add(T newItem) {
         if (isFull()) {
             return false;
         }
-        items[itemCount] = newItem;
-        itemCount++;
+        if (newItem instanceof Garbage) {
+            for (int i = 1; i <= ((Garbage) newItem).getAmount(); i++) {
+                items[itemCount] = newItem;
+                itemCount++;
+            }
+            return true;
+        }
+
         return true;
     }
 

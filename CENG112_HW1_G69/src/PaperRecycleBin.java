@@ -15,6 +15,10 @@ public class PaperRecycleBin<T> implements IBag<T> {
         this.items = (T[]) new Object[capacity];
         this.itemCount = 0;
     }
+    public T getByIndex(int index){
+
+        return items[index];
+    }
 
     public boolean add(T newItem) {
         if (isFull()) {
@@ -23,6 +27,7 @@ public class PaperRecycleBin<T> implements IBag<T> {
         items[itemCount] = newItem;
         itemCount++;
         return true;
+
     }
 
     public boolean isEmpty() {

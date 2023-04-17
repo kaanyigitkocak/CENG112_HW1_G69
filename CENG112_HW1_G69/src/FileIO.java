@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class FileIO {
 
-    private final String FILE_NAME = "garbage.txt";
+    private final String FILE_NAME = "src//garbage.txt";
     private IBag<Garbage> trashCan;
 
     public FileIO() {
@@ -23,9 +23,11 @@ public class FileIO {
                 String garbageType = tokens[1].trim();
                 int amount = Integer.parseInt(tokens[2].trim());
 
-                Garbage garbage = new Garbage(garbageName, garbageType,amount);
-                this.trashCan.add(garbage);
+                Garbage garbage = new Garbage(garbageName, garbageType,1);
+                for( int i = 1; i<= amount;i++) {
 
+                    this.trashCan.add(garbage);
+                }
                 line = reader.readLine();
             }
 
