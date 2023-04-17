@@ -1,11 +1,10 @@
-import java.util.Arrays;
+
 
 public class TrashCan<T> implements IBag<T> {
 
     public T[] items;
     private int itemCount;
     private int capacity;
-
     private static final int DEFAULT_CAPACITY = 450;
 
     public TrashCan() {
@@ -117,7 +116,6 @@ public class TrashCan<T> implements IBag<T> {
         itemCount--;
         return removedItem;
     }
-
     public T remove(T item) {
         int index = getIndexOf(item);
         if (index == -1) {
@@ -125,11 +123,9 @@ public class TrashCan<T> implements IBag<T> {
         }
         return removeByIndex(index);
     }
-
     public int getItemCount() {
         return itemCount;
     }
-
     public int getIndexOf(T item) {
         for (int i = 0; i < itemCount; i++) {
             if (items[i].equals(item)) {
@@ -138,20 +134,20 @@ public class TrashCan<T> implements IBag<T> {
         }
         return -1;
     }
-
     public boolean contains(T item) {
         return getIndexOf(item) != -1;
     }
 
     public void displayItems() {
-        System.out.println(Arrays.toString(items));
+        for (int i = 0; i < itemCount; i++) {
+            System.out.println(getByIndex(i));
+        }
     }
-
     public void dump() {
-        Arrays.fill(items, null);
-        itemCount = 0;
+        while(!isEmpty()){
+            remove();
+        }
     }
-
     public boolean transferTo(IBag<T> targetBag, T item) {
         if (!contains(item)) {
             return false;

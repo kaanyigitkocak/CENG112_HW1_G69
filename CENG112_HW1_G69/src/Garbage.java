@@ -36,7 +36,7 @@ public class Garbage {
 
 	    @Override
 	    public String toString() {
-	        return "Garbage Name: " + garbageName + ", Garbage Type: " + garbageType + ", Amount: " + amount;
+	        return garbageName + "," + garbageType +"," + amount;
 	    }
 	    
 	    @Override

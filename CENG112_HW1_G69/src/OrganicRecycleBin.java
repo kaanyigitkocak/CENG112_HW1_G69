@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 import java.util.Random;
 
 public class OrganicRecycleBin<T> implements IBag<T> {
@@ -87,12 +87,15 @@ public class OrganicRecycleBin<T> implements IBag<T> {
     }
 
     public void displayItems() {
-        System.out.println(Arrays.toString(items));
+        for (int i = 0; i < itemCount; i++) {
+            System.out.println(getByIndex(i));
+        }
     }
 
     public void dump() {
-        Arrays.fill(items, null);
-        itemCount = 0;
+        while(!isEmpty()){
+            remove();
+        }
     }
 
     public boolean transferTo(IBag<T> targetBag, T item) {
