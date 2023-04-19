@@ -15,6 +15,9 @@ public class GlassRecycleBin<T> implements IBag<T> {
         this.items = (T[]) new Object[capacity];
         this.itemCount = 0;
     }
+
+    //You can refer to the IBag interface to check the tasks of the methods.
+
     public T getByIndex(int index){
 
         return items[index];
@@ -91,9 +94,30 @@ public class GlassRecycleBin<T> implements IBag<T> {
         return getIndexOf(item) != -1;
     }
 
+
+    //If we call the display method directly with the items list returned by the add method in the FileIO class
+    //it would print the same object three times since the add method adds each garbage object one by one
+    //(for example olive  packet,plastic,3 creating three entries in the list for an object with a count of 3)
+    // Therefore, we try to prevent this repetition when displaying by implementing a check in the code.
+    //olive  packet,plastic,1
+    //olive  packet,plastic,1    ===> olive  packet,plastic,3
+    //olive  packet,plastic,1
     public void displayItems() {
-        for (int i = 0; i < itemCount; i++) {
-            System.out.println(getByIndex(i));
+        for (int a = 0; a < getItemCount(); a++) {
+            T garbage = getByIndex(a);
+            int count = 1; // start count at 1 for the first item
+            if (a>0 && garbage.equals(getByIndex(a-1))) {
+                continue;
+            }
+            for (int i = a + 1; i < getItemCount(); i++) {
+                if (garbage.equals(getByIndex(i))) {
+                    count++;
+                }
+                else{break;}
+            }
+            if(garbage instanceof Garbage) {
+                System.out.println(((Garbage) garbage).getGarbageName() + ","+ count);
+            }
         }
     }
 
